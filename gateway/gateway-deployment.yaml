@@ -5,17 +5,19 @@ metadata:
   labels:
     app: gateway
 spec:
-  replicas: 1  # Nombre de répliques souhaitées
+  replicas: 1  # Number of desired replicas
   selector:
     matchLabels:
+      bb: web
       app: gateway
   template:
     metadata:
       labels:
+        bb: web
         app: gateway
     spec:
       containers:
         - name: gateway
-          image: guedadachraf/gatewayservice:latest  # Remplacez par l'image Docker de votre Gateway
+          image: guedadachraf/gatewayservice:1.1  # Replace with your Gateway Docker image
           ports:
-            - containerPort: 9090  # Port sur lequel l'application écoute
+            - containerPort: 9090  # Port on which the application listens

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msc
+  labels:
+    app: msc
+spec:
+  replicas: 1  # Number of desired replicas
+  selector:
+    matchLabels:
+      app: msc
+      bb: web
+  template:
+    metadata:
+      labels:
+        app: msc
+        bb: web  # The label 'bb: web' is added here
+    spec:
+      containers:
+        - name: msc
+          image: guedadachraf/mscservice:latest  # Replace with the correct Docker image for your msc microservice
+          ports:
+            - containerPort: 8083  # Port on which the application listens

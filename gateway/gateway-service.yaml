@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gateway
+  name: gateway-service
 spec:
-  type: LoadBalancer
   selector:
-    app: msb
+    app: gateway
+    bb: web  # Added to match the Deployment label
   ports:
-    - port: 8082
-      targetPort: 8082
-      nodePort: 31756  # or a random port assigned by Kubernetes if not specified
+    - protocol: TCP
+      port: 80          # Port on which the service is exposed
+      targetPort: 9090  # Port on which the container is listening
+      nodePort: 30001   # Specify a node port (optional, used with LoadBalancer or NodePort type)
+  type: LoadBalancer

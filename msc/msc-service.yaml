@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: msc-service
+spec:
+  selector:
+    app: msc
+    bb: web         # Add the 'bb: web' selector to match the labels in the deployment
+  ports:
+    - protocol: TCP
+      port: 8083          # The port on which the service is exposed
+      targetPort: 8083     # The port on which the container is listening
+      nodePort: 30003      # The NodePort to access the service externally
+  type: LoadBalancer
