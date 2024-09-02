@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+spec:
+  type: LoadBalancer
+  selector:
+    app: msb
+  ports:
+    - port: 8082
+      targetPort: 8082
+      nodePort: 31756  # or a random port assigned by Kubernetes if not specified

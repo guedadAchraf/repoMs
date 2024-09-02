@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msb-deployment
+  labels:
+    app: msb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: msb
+  template:
+    metadata:
+      labels:
+        app: msb
+    spec:
+      containers:
+        - name: msb
+          image: guedadachraf/msbservice:latest # Replace with your Docker image if different
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "docker"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9093"
